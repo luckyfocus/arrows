@@ -18,13 +18,12 @@
       }
     };
   </script>
-  <script type="module" crossorigin src="./js/index-D2En2I4A.js"></script>
-  <link rel="stylesheet" crossorigin href="./css/index-DvzYK8Ih.css">
+  <script type="module" crossorigin src="./js/index-BCndPPUZ.js"></script>
+  <link rel="stylesheet" crossorigin href="./css/index-N5ghPt0M.css">
 </head>
 
 <body>
-  <!-- FPS Counter (debug) -->
-  <div id="fpsCounter" class="fps-counter"></div>
+  <!-- FPS Counter is created dynamically in DEV mode only -->
   <script>
     try {
       if (localStorage.getItem('darkMode') === 'true') {
@@ -59,6 +58,12 @@
 
   <!-- Game Over Modal -->
   <div class="game-over-modal" id="gameOverModal" style="display: none;">
+    <!-- Ad Loading Spinner Overlay -->
+    <div class="ad-loading-overlay" id="adLoadingOverlay" style="display: none;">
+      <div class="ad-loading-content">
+        <div class="ad-loading-spinner"></div>
+      </div>
+    </div>
     <div class="game-over-content">
       <div class="game-over-icon">💔</div>
       <h2 class="game-over-title">Out of Lives!</h2>
@@ -84,6 +89,7 @@
 
   <!-- Level Complete Modal -->
   <div class="level-complete-modal" id="levelCompleteModal" style="display: none;">
+    <div class="modal-background"></div>
     <canvas id="confettiCanvas"
       style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1;"></canvas>
     <div class="level-complete-content">
@@ -137,30 +143,25 @@
 
     <!-- Top UI Panel - New Design -->
     <div class="top-ui">
-      <!-- Left: Level Label -->
-      <div class="level-label" id="levelLabel">Level 1</div>
 
-      <!-- Center: Lives Counter -->
-      <div class="lives-counter" id="livesContainer">
-        <svg class="lives-icon" viewBox="0 0 24 24" fill="currentColor">
-          <path
-            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-        </svg>
-        <span class="lives-count" id="livesCount">6</span>
+      <div class="level-info">
+        <div class="level-name" id="levelNameDisplay">Level 1</div>
+        <div class="lives-counter" id="livesContainer">
+          <!-- Hearts will be injected here via JS -->
+        </div>
       </div>
 
-      <!-- Right: Buttons Group (Restart + Settings) -->
+      <!-- Right: Actions Group (Restart + Settings) -->
       <div class="top-actions">
-        <button class="action-btn" id="restartLvlBtn" title="Restart">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
-          </svg>
-        </button>
+
+
         <button class="action-btn" id="settingsBtn" title="Settings">
-          <svg viewBox="0 0 24 24" fill="currentColor">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"
+            stroke-linejoin="round">
             <path
-              d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L3.16 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.58 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" />
+              d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2-.3l-.15-.09a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 .32l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 .3l.15.09a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.47a2 2 0 0 1 1-1.74l-.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2-.32l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z">
+            </path>
+            <circle cx="12" cy="12" r="3"></circle>
           </svg>
         </button>
       </div>
@@ -172,54 +173,10 @@
 
     <!-- Tutorial Hand Overlay (Level 1 only) -->
     <div class="tutorial-hand-overlay" id="tutorialHandOverlay" style="display: none;">
-      <img src="data:image/svg+xml,%3c?xml%20version='1.0'%20encoding='UTF-8'?%3e%3csvg%20id='_Слой_2'%20data-name='Слой%202'%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20212.57%20168.51'%3e%3cdefs%3e%3cstyle%3e%20.cls-1%20{%20fill:%20%23fff;%20}%20.cls-2%20{%20fill:%20%23000306;%20}%20%3c/style%3e%3c/defs%3e%3cg%20id='Layer_1'%20data-name='Layer%201'%3e%3cg%3e%3cpath%20class='cls-1'%20d='M120.99,4.69c-3.22,3-5.18,6.94-5.64,11.24-6.83-4.22-15.93-3.62-21.89,1.93-3.22,3-5.18,6.94-5.64,11.24-6.83-4.22-15.93-3.62-21.89,1.93-3.06,2.85-4.99,6.56-5.56,10.63L30.95,12.26c-6.9-6.9-18.22-7.22-25.22-.7C2.13,14.93.09,19.49,0,24.42c-.09,4.93,1.78,9.56,5.27,13.04l60.37,60.37c-2.24-.16-4.52.11-6.73.81-4.58,1.46-8.32,4.61-10.52,8.88-2.21,4.27-2.62,9.14-1.16,13.72,1.46,4.58,4.61,8.32,8.88,10.52,0,0,34.13,17.64,47.56,24.57,2,1.03,4.03,2.14,5.99,3.2.76.41,1.51.82,2.27,1.23,12.01,6.49,26.11,9.03,39.69,7.15,14.05-1.94,26.79-8.29,36.85-18.34l5.18-5.18c25.25-25.25,25.25-66.32,0-91.57L146.2,5.39c-6.9-6.9-18.22-7.22-25.22-.7Z'/%3e%3cpath%20class='cls-2'%20d='M120.99,4.69c-3.22,3-5.18,6.94-5.64,11.24-6.83-4.22-15.93-3.62-21.89,1.93-3.22,3-5.18,6.94-5.64,11.24-6.83-4.22-15.93-3.62-21.89,1.93-3.06,2.85-4.99,6.56-5.56,10.63L30.95,12.26c-6.9-6.9-18.22-7.22-25.22-.7C2.13,14.93.09,19.49,0,24.42c-.09,4.93,1.78,9.56,5.27,13.04l60.37,60.37c-2.24-.16-4.52.11-6.73.81-4.58,1.46-8.32,4.61-10.52,8.88-2.21,4.27-2.62,9.14-1.16,13.72,1.46,4.58,4.61,8.32,8.88,10.52,0,0,34.13,17.64,47.56,24.57,2,1.03,4.03,2.14,5.99,3.2.76.41,1.51.82,2.27,1.23,12.01,6.49,26.11,9.03,39.69,7.15,14.05-1.94,26.79-8.29,36.85-18.34l5.18-5.18c25.25-25.25,25.25-66.32,0-91.57L146.2,5.39c-6.9-6.9-18.22-7.22-25.22-.7ZM188.55,57.91c22.44,22.44,22.44,58.95,0,81.39l-5.18,5.18c-17.85,17.85-45.83,21.95-68.03,9.95l-2.25-1.22c-1.99-1.09-4.06-2.21-6.13-3.28-13.43-6.92-47.56-24.56-47.56-24.56-2.56-1.32-4.45-3.57-5.33-6.31s-.63-5.67.7-8.23c.52-1.01,1.18-1.9,1.95-2.67,3.23-3.23,8.32-4.17,12.6-1.96l10.14,5.24c1.55.8,3.46.37,4.52-1.02.03-.04.06-.08.09-.12,1.01-1.43.84-3.38-.4-4.62L10.36,32.37c-2.09-2.09-3.21-4.87-3.16-7.83.05-2.95,1.27-5.69,3.45-7.71,4.2-3.91,11.03-3.68,15.22.52l39.59,39.59,24.5,24.5c1.41,1.41,3.68,1.41,5.09,0,1.41-1.41,1.41-3.68,0-5.09l-24.5-24.5c-2.09-2.09-3.21-4.87-3.16-7.83.05-2.95,1.27-5.69,3.45-7.71,4.2-3.91,11.03-3.68,15.22.52l6.93,6.93,22.37,22.37c1.41,1.41,3.68,1.41,5.09,0s1.41-3.68,0-5.09l-22.37-22.37c-2.09-2.09-3.21-4.87-3.16-7.83.05-2.95,1.28-5.69,3.45-7.71,4.2-3.91,11.03-3.68,15.22.52l6.93,6.93,18.85,18.85c1.41,1.41,3.68,1.41,5.09,0,1.41-1.41,1.41-3.68,0-5.09l-18.85-18.85c-2.09-2.09-3.21-4.87-3.16-7.83.05-2.95,1.28-5.69,3.45-7.71,4.2-3.91,11.03-3.68,15.22.52l47.44,47.44Z'/%3e%3c/g%3e%3c/g%3e%3c/svg%3e" alt="Click here" class="tutorial-hand-icon">
+      <img src="data:image/svg+xml,%3c?xml%20version='1.0'%20encoding='UTF-8'?%3e%3csvg%20id='_Слой_2'%20data-name='Слой%202'%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20212.57%20168.51'%3e%3cdefs%3e%3cstyle%3e%20.cls-1%20{%20fill:%20%23fff;%20}%20.cls-2%20{%20fill:%20%23000D27;%20}%20%3c/style%3e%3c/defs%3e%3cg%20id='Layer_1'%20data-name='Layer%201'%3e%3cg%3e%3cpath%20class='cls-1'%20d='M120.99,4.69c-3.22,3-5.18,6.94-5.64,11.24-6.83-4.22-15.93-3.62-21.89,1.93-3.22,3-5.18,6.94-5.64,11.24-6.83-4.22-15.93-3.62-21.89,1.93-3.06,2.85-4.99,6.56-5.56,10.63L30.95,12.26c-6.9-6.9-18.22-7.22-25.22-.7C2.13,14.93.09,19.49,0,24.42c-.09,4.93,1.78,9.56,5.27,13.04l60.37,60.37c-2.24-.16-4.52.11-6.73.81-4.58,1.46-8.32,4.61-10.52,8.88-2.21,4.27-2.62,9.14-1.16,13.72,1.46,4.58,4.61,8.32,8.88,10.52,0,0,34.13,17.64,47.56,24.57,2,1.03,4.03,2.14,5.99,3.2.76.41,1.51.82,2.27,1.23,12.01,6.49,26.11,9.03,39.69,7.15,14.05-1.94,26.79-8.29,36.85-18.34l5.18-5.18c25.25-25.25,25.25-66.32,0-91.57L146.2,5.39c-6.9-6.9-18.22-7.22-25.22-.7Z'/%3e%3cpath%20class='cls-2'%20d='M120.99,4.69c-3.22,3-5.18,6.94-5.64,11.24-6.83-4.22-15.93-3.62-21.89,1.93-3.22,3-5.18,6.94-5.64,11.24-6.83-4.22-15.93-3.62-21.89,1.93-3.06,2.85-4.99,6.56-5.56,10.63L30.95,12.26c-6.9-6.9-18.22-7.22-25.22-.7C2.13,14.93.09,19.49,0,24.42c-.09,4.93,1.78,9.56,5.27,13.04l60.37,60.37c-2.24-.16-4.52.11-6.73.81-4.58,1.46-8.32,4.61-10.52,8.88-2.21,4.27-2.62,9.14-1.16,13.72,1.46,4.58,4.61,8.32,8.88,10.52,0,0,34.13,17.64,47.56,24.57,2,1.03,4.03,2.14,5.99,3.2.76.41,1.51.82,2.27,1.23,12.01,6.49,26.11,9.03,39.69,7.15,14.05-1.94,26.79-8.29,36.85-18.34l5.18-5.18c25.25-25.25,25.25-66.32,0-91.57L146.2,5.39c-6.9-6.9-18.22-7.22-25.22-.7ZM188.55,57.91c22.44,22.44,22.44,58.95,0,81.39l-5.18,5.18c-17.85,17.85-45.83,21.95-68.03,9.95l-2.25-1.22c-1.99-1.09-4.06-2.21-6.13-3.28-13.43-6.92-47.56-24.56-47.56-24.56-2.56-1.32-4.45-3.57-5.33-6.31s-.63-5.67.7-8.23c.52-1.01,1.18-1.9,1.95-2.67,3.23-3.23,8.32-4.17,12.6-1.96l10.14,5.24c1.55.8,3.46.37,4.52-1.02.03-.04.06-.08.09-.12,1.01-1.43.84-3.38-.4-4.62L10.36,32.37c-2.09-2.09-3.21-4.87-3.16-7.83.05-2.95,1.27-5.69,3.45-7.71,4.2-3.91,11.03-3.68,15.22.52l39.59,39.59,24.5,24.5c1.41,1.41,3.68,1.41,5.09,0,1.41-1.41,1.41-3.68,0-5.09l-24.5-24.5c-2.09-2.09-3.21-4.87-3.16-7.83.05-2.95,1.27-5.69,3.45-7.71,4.2-3.91,11.03-3.68,15.22.52l6.93,6.93,22.37,22.37c1.41,1.41,3.68,1.41,5.09,0s1.41-3.68,0-5.09l-22.37-22.37c-2.09-2.09-3.21-4.87-3.16-7.83.05-2.95,1.28-5.69,3.45-7.71,4.2-3.91,11.03-3.68,15.22.52l6.93,6.93,18.85,18.85c1.41,1.41,3.68,1.41,5.09,0,1.41-1.41,1.41-3.68,0-5.09l-18.85-18.85c-2.09-2.09-3.21-4.87-3.16-7.83.05-2.95,1.28-5.69,3.45-7.71,4.2-3.91,11.03-3.68,15.22.52l47.44,47.44Z'/%3e%3c/g%3e%3c/g%3e%3c/svg%3e" alt="Click here" class="tutorial-hand-icon">
     </div>
 
-    <!-- Developer Panel (Hidden by default, shown via JS in DEV mode) -->
-    <div class="dev-panel" id="devPanel"
-      style="display: none; position: absolute; bottom: 80px; left: 50%; transform: translateX(-50%); gap: 10px; z-index: 100;">
-      <button id="devPrevBtn"
-        style="padding: 8px 16px; background: rgba(0,0,0,0.5); color: white; border: 1px solid white; border-radius: 4px; cursor: pointer;">◀</button>
-
-      <!-- Level Jump -->
-      <input type="text" id="devLevelInput" inputmode="numeric"
-        style="width: 50px; padding: 8px; background: rgba(0,0,0,0.5); color: white; border: 1px solid white; border-radius: 4px; text-align: center; font-size: 14px; appearance: textfield; -moz-appearance: textfield;">
-
-      <button id="devWinBtn"
-        style="padding: 8px 16px; background: rgba(40, 167, 69, 0.7); color: white; border: 1px solid white; border-radius: 4px; cursor: pointer;">🏆</button>
-      <button id="devNextBtn"
-        style="padding: 8px 16px; background: rgba(0,0,0,0.5); color: white; border: 1px solid white; border-radius: 4px; cursor: pointer;">▶</button>
-
-      <!-- Hitbox Debug Toggle -->
-      <button id="hitboxToggle"
-        style="padding: 8px 16px; background: rgba(0,0,0,0.5); color: white; border: 1px solid white; border-radius: 4px; cursor: pointer; font-size: 14px;">🎯</button>
-
-      <!-- FPS Toggle -->
-      <button id="fpsToggle"
-        style="padding: 8px 16px; background: rgba(0,0,0,0.5); color: white; border: 1px solid white; border-radius: 4px; cursor: pointer; font-size: 14px;">📊</button>
-
-      <!-- Click Debug Toggle -->
-      <button id="clickDebugToggle"
-        style="padding: 8px 16px; background: rgba(0,0,0,0.5); color: white; border: 1px solid white; border-radius: 4px; cursor: pointer; font-size: 14px;">📍</button>
-
-      <!-- Language Selector -->
-      <select id="devLangSelect"
-        style="padding: 8px 16px; background: rgba(0,0,0,0.5); color: white; border: 1px solid white; border-radius: 4px; cursor: pointer; font-size: 14px;">
-        <option value="ru">🇷🇺 Русский</option>
-        <option value="en">🇬🇧 English</option>
-        <option value="tr">🇹🇷 Türkçe</option>
-        <option value="ja">🇯🇵 日本語</option>
-        <option value="pt">🇵🇹 Português</option>
-        <option value="es">🇪🇸 Español</option>
-        <option value="de">🇩🇪 Deutsch</option>
-        <option value="fr">🇫🇷 Français</option>
-        <option value="it">🇮🇹 Italiano</option>
-      </select>
-
-      <!-- Pause Toggle -->
-      <button id="devPauseBtn"
-        style="padding: 8px 16px; background: rgba(255, 152, 0, 0.7); color: white; border: 1px solid white; border-radius: 4px; cursor: pointer; font-weight: bold;">⏸️</button>
-    </div>
+    <!-- Developer Panel is created dynamically in DEV mode only -->
 
     <!-- Bottom UI Group -->
     <div class="bottom-ui-group">
@@ -318,6 +275,20 @@
         <input type="checkbox" id="themeCheckbox">
         <span class="slider round"></span>
       </div>
+    </div>
+
+    <!-- Restart Level -->
+    <div class="settings-item settings-item-button" id="settingsRestartBtn">
+      <div class="settings-label">
+        <svg class="settings-icon restart-icon" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z" />
+        </svg>
+        <span>Restart</span>
+      </div>
+      <svg class="chevron-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+      </svg>
     </div>
   </div>
 
